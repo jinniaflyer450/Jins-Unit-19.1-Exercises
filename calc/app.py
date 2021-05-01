@@ -5,18 +5,30 @@ from operations import add, sub, mult, div
 
 app = Flask(__name__)
 
-@app.route('/add')
-def add_params():
-    #TODO: make function to add query string parameters a and b.
+@app.route('/<operation>')
+def do_math(operation):
+    args = request.args
+    a = int(args['a'])
+    b = int(args['b'])
+    if(operation == 'add'):
+        return str(add(a, b))
+    elif(operation == 'sub'):
+        return str(sub(a, b))
+    elif(operation == 'mult'):
+        return str(mult(a, b))
+    elif(operation == 'div'):
+        return str(div(a, b))
 
-@app.route('/sub')
-def sub_params():
-    #TODO: make function to subtract query string parameter b from query string parameter a.
-
-@app.route('/mult')
-def mult_params():
-    #TODO: make function to multiply query string parameters a and b.
-
-@app.route('/div')
-def div_params():
-    #TODO: make function to divide query string parameter a by query string parameter b.
+@app.route('/math/<operation>')
+def do_math_alt_route(operation):
+    args = request.args
+    a = int(args['a'])
+    b = int(args['b'])
+    if(operation == 'add'):
+        return str(add(a, b))
+    elif(operation == 'sub'):
+        return str(sub(a, b))
+    elif(operation == 'mult'):
+        return str(mult(a, b))
+    elif(operation == 'div'):
+        return str(div(a, b))     
